@@ -2,7 +2,7 @@ import random
 
 
 def attack(attackers, defenders):
-    if attackers <= 0 | defenders <= 0 | attackers > 3 | defenders > 2:
+    if attackers <= 0 or defenders <= 0 or attackers > 3 or defenders > 2:
         return 0
 
     score = 0
