@@ -13,8 +13,8 @@ def set_up_game(players, map):
 # randomly assign territories on the map to the players
 # return: the new map, the starting players, and the armies that still need to be placed
 def randomly_initialize_territories(players, map):
-    map_size = map.territories.size()
-    player_count = players.size()
+    map_size = len(map.territories)
+    player_count = len(players)
 
     list_of_territories = random.shuffle(range(0, map_size+1))
 
@@ -32,7 +32,7 @@ def randomly_initialize_territories(players, map):
     starting_player = assigned_players.pop()
 
     # determine the remaining armies
-    remaining_armies = map.army_sizes[players.size()-1] - int(map_size/player_count) - int(assigned_players.size()/players.size()) + 1
+    remaining_armies = map.army_sizes[len(players)-1] - int(map_size/player_count) - int(len(assigned_players)/player_count) + 1
 
     return map, starting_player, remaining_armies
 
@@ -53,7 +53,7 @@ def randomly_place_remaining_armies(players, map, starting_player, remaining_arm
 # randomly place an army on a player owned territory
 def randomly_place_army(player, map):
 
-    map_size = map.territories.size()
+    map_size = len(map.territories)
     list_of_territories = random.shuffle(range(0, map_size+1))
 
     for territory in list_of_territories:
