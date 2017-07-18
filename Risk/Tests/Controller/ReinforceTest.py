@@ -49,7 +49,7 @@ class TestBattle(unittest.TestCase):
         self.region_south = Region("South", self.south_value, [self.territory_c])
         self.region_south_2 = Region("South", self.south_value, [self.territory_c, self.territory_d, self.territory_e, self.territory_f, self.territory_g, self.territory_h, self.territory_i, self.territory_j, self.territory_k, self.territory_l, self.territory_m, self.territory_n, self.territory_o])
 
-        self.map = Map("TestMap", [self.region_north, self.region_south], [self.territory_a, self.territory_b, self.territory_c])
+        self.map = Map("TestMap", [self.region_north, self.region_south])
         self.map_2 = Map("TestMap", [self.region_north, self.region_south_2])
         self.players = [1,2,3]
 
@@ -70,6 +70,15 @@ class TestBattle(unittest.TestCase):
         self.assertEquals(get_territory_reinforcements(1, self.map_2), (1,3))
         self.assertEquals(get_territory_reinforcements(2, self.map_2), (1,3))
         self.assertEquals(get_territory_reinforcements(3, self.map_2), (13,4))
+
+    def test_total_reinforcements(self):
+        self.assertEquals(get_reinforcements(1,self.map), 3)
+        self.assertEquals(get_reinforcements(2,self.map), 3)
+        self.assertEquals(get_reinforcements(3,self.map), 3 + self.south_value)
+
+        self.assertEquals(get_reinforcements(1,self.map_2), 3)
+        self.assertEquals(get_reinforcements(2,self.map_2), 3)
+        self.assertEquals(get_reinforcements(3,self.map_2), 4 + self.south_value)
 
 
 
