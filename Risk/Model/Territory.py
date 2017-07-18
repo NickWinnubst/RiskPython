@@ -1,4 +1,4 @@
-class Territory:
+class Territory(object):
 
     name = "NaN"
     region = "NaN"
@@ -6,9 +6,8 @@ class Territory:
     armies = 0
     connections = []
 
-    def __init__(self, name, region, connections):
+    def __init__(self, name, connections):
         self.name = name
-        self.region = region
         self.connections = connections
 
     def set_owner(self, new_owner, army_count):
