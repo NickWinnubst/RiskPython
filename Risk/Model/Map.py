@@ -13,6 +13,13 @@ class Map(object):
         self.regions = regions
         self.army_sizes = army_sizes
 
+    def get_all_territories(self):
+        territories = []
+        for region in self.regions:
+            for territory in region.territories:
+                territories.append(territory)
+        return territories
+
     def get_territory(self, name):
         for region in self.regions:
             for territory in region.territories:
