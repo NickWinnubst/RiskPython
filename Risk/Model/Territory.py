@@ -1,7 +1,10 @@
+
+
+# This class defines the Territory objects, which govern the a single territory.
+# This class describes it's name, owner, army occupation, and connections.
 class Territory(object):
 
     name = "NaN"
-    region = "NaN"
     owner = 0
     armies = 0
     connections = []
