@@ -1,5 +1,7 @@
-from Model.Region import *
 
+
+# This class defines the Map objects, which govern the whole map and own it's internal regions.
+# This also contain the allowed army sizes for the map.
 class Map(object):
 
     name = "NaN"
