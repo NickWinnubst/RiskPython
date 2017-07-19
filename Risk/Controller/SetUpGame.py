@@ -13,20 +13,20 @@ def set_up_game(players, new_map):
 # randomly assign territories on the map to the players
 # return: the new map, the starting players, and the armies that still need to be placed
 def randomly_initialize_territories(players, game_map):
-    map_size = len(game_map.territories)
+    map_size = len(game_map.get_all_territories())
     player_count = len(players)
 
-    list_of_territories = random.shuffle(range(0, map_size+1))
+    list_of_territories = random.sample(list(range(map_size)),map_size)
 
     # assign territories for each player
     for player in players:
         for i in range(0,int(map_size/player_count)):
-            game_map.territories[list_of_territories.pop()].set_owner(player, 1)
+            game_map.get_all_territories()[list_of_territories.pop()].set_owner(player, 1)
 
     # assign the leftover territories
-    assigned_players = players
+    assigned_players = list(players)
     for remaining in list_of_territories:
-        game_map.territories[remaining].set_owner(assigned_players.pop(), 1)
+        game_map.get_all_territories()[remaining].set_owner(assigned_players.pop(), 1)
 
     # determine the starting player
     starting_player = assigned_players.pop()
@@ -47,16 +47,16 @@ def randomly_place_remaining_armies(players, game_map, starting_player, remainin
         for i in range(0,remaining_armies):
             randomly_place_army(player, game_map)
 
-    return map
+    return game_map
 
 
 # randomly place an army on a player owned territory
 def randomly_place_army(player, game_map):
 
-    map_size = len(game_map.territories)
-    list_of_territories = random.shuffle(range(0, map_size+1))
+    map_size = len(game_map.get_all_territories())
+    list_of_territories = random.sample(list(range(map_size)),map_size)
 
     for territory in list_of_territories:
-        if game_map.territories[territory].owner == player:
-            game_map.territories[territory].armies += 1
+        if game_map.get_all_territories()[territory].owner == player:
+            game_map.get_all_territories()[territory].armies += 1
             break
