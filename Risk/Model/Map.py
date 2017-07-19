@@ -27,3 +27,19 @@ class Map(object):
                     return territory
 
         return None
+
+    def print(self):
+        print("*********************")
+        print("Map name: " + self.name)
+        print("Army sizes: " + str(self.army_sizes))
+        for reg in self.regions:
+            print("*********************")
+            print("Region name: " + reg.name)
+            print("Region value: " + str(reg.value))
+            for ter in reg.territories:
+                print("-----------------------")
+                print("Territory name: " + ter.name)
+                print("Territory connections: " + str(ter.connections))
+                print("Territory owner: " + str(ter.owner))
+                print("Territory occupation: " + str(ter.armies))
+        print("*********************")
