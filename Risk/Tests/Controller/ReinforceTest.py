@@ -3,10 +3,10 @@ import unittest
 from Model.Territory import *
 from Model.Region import *
 from Model.Map import *
-import random
 
 
-class TestBattle(unittest.TestCase):
+# Test the Reinforce class
+class TestReinforce(unittest.TestCase):
 
     def setUp(self):
         self.territory_a = Territory("A", ["B","C"])
