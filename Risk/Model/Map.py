@@ -4,7 +4,6 @@ class Map(object):
 
     name = "NaN"
     regions = []
-    territories = []
     army_sizes = []
 
     def __init__(self, name, regions, army_sizes = [0, 40, 35, 30, 25, 20]):
