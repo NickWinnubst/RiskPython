@@ -1,3 +1,6 @@
+
+
+# This class defines the Region objects, which govern a region and own it's internal territories.
 class Region(object):
 
     name = "NaN"

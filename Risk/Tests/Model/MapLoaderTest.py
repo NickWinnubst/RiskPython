@@ -3,6 +3,7 @@ from Model.MapLoader import *
 import unittest
 
 
+# Test the MapLoader class
 class MapLoaderTest(unittest.TestCase):
 
     def setUp(self):
