@@ -3,6 +3,7 @@ import unittest
 import random
 
 
+# Test the Battle class
 class TestBattle(unittest.TestCase):
 
     def setUp(self):
