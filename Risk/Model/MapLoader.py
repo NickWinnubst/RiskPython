@@ -3,9 +3,8 @@ from Model.Map import Map
 from Model.Region import Region
 from Model.Territory import Territory
 
+
 # load in map files from JSON format
-
-
 def load_fresh_map(path):
 
     regions = []
