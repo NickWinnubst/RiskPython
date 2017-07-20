@@ -22,7 +22,7 @@
 		},
 		{"name":"Africa", "value":3, "territories":[
 			{"name":"North Africa", "location":[490,446], "connections":["Egypt","Congo","East Africa","Brazil","Western Europe","Southern Europe"]},
-			{"name":"Egypt", "location":[5569,417], "connections":["North Africa","East Africa","Southern Europe","Middle East"]},
+			{"name":"Egypt", "location":[569,417], "connections":["North Africa","East Africa","Southern Europe","Middle East"]},
 			{"name":"Congo", "location":[570,544], "connections":["North Africa","East Africa","South Africa"]},
 			{"name":"East Africa", "location":[622,506], "connections":["North Africa","Egypt","Congo","Madagascar","South Africa","Middle East"]},
 			{"name":"Madagascar", "location":[675,637], "connections":["East Africa","South Africa"]},
