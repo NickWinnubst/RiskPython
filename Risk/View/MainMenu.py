@@ -11,7 +11,7 @@ class MainMenu(tk.Frame):
         tk.Frame.__init__(self, parent, *args, **kwargs)
 
         self.game_map = MapLoader.load_fresh_map("../Maps/risk-1-original.json")
-        self.game_map = SetUpGame.set_up_game([1,2,3], self.game_map)
+        self.game_map = SetUpGame.set_up_game(["Fred","George","Ron"], self.game_map)
 
         #self.new_game_button = tk.Button(root, text="Print Test Map", command = self.game_map.print)
         #self.new_game_button.pack()
@@ -20,6 +20,7 @@ class MainMenu(tk.Frame):
 
         def motion(event):
             print("Clicked at: %s, %s" % (event.x,event.y))
+            print("Closest territory: %s" % self.game_map.get_closest_territory([event.x,event.y]).name)
 
         self.display_map.bind('<Button-1>', motion)
         self.display_map.pack()
