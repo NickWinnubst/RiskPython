@@ -20,18 +20,24 @@ class MainMenu(tk.Frame):
         self.display = tk.PhotoImage(file="../Maps/risk-1-original.png")
         self.display_map = tk.Label(root, image=self.display)
 
+        self.previously_selected = self.game_map.get_all_territories()[0]
+
         def motion(event):
+            selected = self.game_map.get_closest_territory([event.x,event.y])
             print("----------------------------------")
             print("Clicked at: %s, %s" % (event.x,event.y))
-            print("Closest territory: %s" % self.game_map.get_closest_territory([event.x,event.y]).name)
-            print("Territory owner: %s" % self.game_map.get_closest_territory([event.x,event.y]).owner)
-            print("Army count: %s" % self.game_map.get_closest_territory([event.x,event.y]).armies)
+            print("Closest territory: %s" % selected.name)
+            print("Territory owner: %s" % selected.owner)
+            print("Army count: %s" % selected.armies)
+            print("Connected to %s: %s" % (self.previously_selected.name, self.previously_selected.name in selected.connections))
+            self.previously_selected = selected
 
         self.display_map.bind('<Button-1>', motion)
         for territory in self.game_map.get_all_territories():
             label = tk.Label(self.display_map, text=str(territory.armies))
             label.place(x=territory.location[0], y=territory.location[1])
             label.configure(font="helvetica 14 bold",relief="raised", foreground="white", background=self.players[[p[0] for p in self.players].index(territory.owner)][1])
+            label.bind('<Button-1>', motion)
         self.display_map.pack()
 
         self.game_map.print()
