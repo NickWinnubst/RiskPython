@@ -42,4 +42,5 @@ class Map(object):
                 print("Territory connections: " + str(ter.connections))
                 print("Territory owner: " + str(ter.owner))
                 print("Territory occupation: " + str(ter.armies))
+                print("Territory location: " + str(ter.location))
         print("*********************")

@@ -15,7 +15,7 @@ def load_fresh_map(path):
         for region in data['regions']:
             territories = []
             for territory in region['territories']:
-                territories.append(Territory(territory['name'],territory['connections']))
+                territories.append(Territory(territory['name'],territory['connections'],territory['location']))
             regions.append(Region(region['name'],region['value'],territories))
 
         try:

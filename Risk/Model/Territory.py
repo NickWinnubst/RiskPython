@@ -8,10 +8,12 @@ class Territory(object):
     owner = 0
     armies = 0
     connections = []
+    location = [0,0]
 
-    def __init__(self, name, connections):
+    def __init__(self, name, connections = [], location = [0,0]):
         self.name = name
         self.connections = connections
+        self.location = location
 
     def set_owner(self, new_owner, army_count):
         self.owner = new_owner
