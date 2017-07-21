@@ -4,7 +4,7 @@ from Controller import SetUpGame
 from Controller.Battle import attack
 from Model.Territory import *
 
-class MainMenu(tk.Frame):
+class Board(tk.Frame):
 
     def __init__(self, parent, *args, **kwargs):
         self.parent = parent
@@ -12,6 +12,8 @@ class MainMenu(tk.Frame):
         tk.Frame.__init__(self, parent, *args, **kwargs)
 
         self.players = [["Fred","blue"],["George","green"],["Ron","red"]]
+
+        self.current_player_nr = 0
 
         self.game_map = MapLoader.load_fresh_map("../Maps/risk-1-original.json")
         self.game_map = SetUpGame.set_up_game([p[0] for p in self.players], self.game_map)
@@ -27,13 +29,17 @@ class MainMenu(tk.Frame):
 
         self.game_map.print()
 
+    def next_turn(self):
+        self.current_player_nr += 1
+        self.update()
+
     def left_click(self,event):
         self.attack = self.print_location_data(event)
         try:
             self.pop_up.destroy()
         except AttributeError:
             ()
-        if self.attack[0].name in self.attack[1].connections and self.attack[0].armies > 1 and self.attack[0].owner is not self.attack[1].owner:
+        if self.attack[0].name in self.attack[1].connections and self.attack[0].armies > 1 and self.attack[0].owner is not self.attack[1].owner and self.attack[0].owner is self.players[self.current_player_nr%len(self.players)][0]:
             self.pop_up_attack()
 
     def print_location_data(self,event):
@@ -50,7 +56,7 @@ class MainMenu(tk.Frame):
 
     def pop_up_attack(self):
         self.pop_up = tk.Toplevel()
-        self.pop_up.geometry("20x40+200+200")
+        self.pop_up.geometry("20x40+590+400")
         label1 = tk.Label(self.pop_up, text="Attack?")
         label1.pack()
         label2 = tk.Button(self.pop_up, text="GO!", command=self.execute_attack)
@@ -81,11 +87,20 @@ class MainMenu(tk.Frame):
             label = tk.Label(self.display_map, text=str(territory.armies))
             label.place(x=territory.location[0], y=territory.location[1])
             label.configure(font="helvetica 14 bold",relief="raised", foreground="white", background=self.players[[p[0] for p in self.players].index(territory.owner)][1])
+
+        self.current_player_label = tk.Label(self.display_map, text=self.players[self.current_player_nr%len(self.players)][0])
+        self.current_player_label.configure(font="helvetica 14 bold",relief="raised", foreground="white", background=self.players[self.current_player_nr%len(self.players)][1])
+        self.current_player_label.place(x=1000,y=350)
+
+        next_turn_button = tk.Button(self.display_map, text="Next Turn", command=self.next_turn)
+        next_turn_button.configure(font="helvetica 14 bold",relief="raised", foreground="white", background="black")
+        next_turn_button.place(x=1000,y=400)
+
         self.display_map.pack()
 
 
 if __name__ == "__main__":
     root = tk.Tk()
     root.title("RiskPython")
-    MainMenu(root).pack(side="top", fill="both", expand=True)
+    Board(root).pack(side="top", fill="both", expand=True)
     root.mainloop()
