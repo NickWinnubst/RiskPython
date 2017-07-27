@@ -1,0 +1,65 @@
+{"name":"risk-1-original",
+	"army_sizes": [40,40,35,30,25,20],
+    "regions": [
+		{"name":"North_America", "value":5, "territories":[
+			{"name":"Alaska", "location":[63,108], "connections":["North_West_Territory","Alberta"]},
+			{"name":"North_West_Territory", "location":[168,102], "connections":["Alaska","Greenland","Alberta","Ontario"]},
+			{"name":"Greenland", "location":[354,64], "connections":["North_West_Territory","Quebec","Ontario","Iceland"]},
+			{"name":"Alberta", "location":[150,165], "connections":["Alaska","North_West_Territory","Ontario","Western_United States"]},
+			{"name":"Ontario", "location":[224,182], "connections":["North_West_Territory","Alberta","Greenland","Quebec","Western_United States","Eastern_United States"]},
+			{"name":"Quebec", "location":[296,177], "connections":["Greenland","Ontario","Eastern_United States"]},
+			{"name":"Western_United States", "location":[152,248], "connections":["Alberta","Ontario","Eastern_United States","Central_America"]},
+			{"name":"Eastern_United States", "location":[236,266], "connections":["Quebec","Ontario","Western_United States","Central_America"]},
+			{"name":"Central_America", "location":[163,345], "connections":["Western_United States","Eastern_United States","Venezuela"]}
+			]
+		},
+     	{"name":"South_America", "value":2, "territories":[
+			{"name":"Venezuela", "location":[239,400], "connections":["Central_America","Peru","Brazil"]},
+			{"name":"Peru", "location":[231,488], "connections":["Brazil","Venezuela","Argentina"]},
+			{"name":"Brazil", "location":[315,472], "connections":["Peru","Venezuela","Argentina","North_Africa"]},
+			{"name":"Argentina", "location":[264,590], "connections":["Brazil","Peru"]}
+			]
+		},
+		{"name":"Africa", "value":3, "territories":[
+			{"name":"North_Africa", "location":[490,446], "connections":["Egypt","Congo","East_Africa","Brazil","Western_Europe","Southern_Europe"]},
+			{"name":"Egypt", "location":[569,417], "connections":["North_Africa","East_Africa","Southern_Europe","Middle_East"]},
+			{"name":"Congo", "location":[570,544], "connections":["North_Africa","East_Africa","South_Africa"]},
+			{"name":"East_Africa", "location":[622,506], "connections":["North_Africa","Egypt","Congo","Madagascar","South_Africa","Middle_East"]},
+			{"name":"Madagascar", "location":[675,637], "connections":["East_Africa","South_Africa"]},
+			{"name":"South_Africa", "location":[573,636], "connections":["Congo","East_Africa","Madagascar"]}
+			]
+		},
+		{"name":"Europe", "value":5, "territories":[
+			{"name":"Iceland", "location":[447,137], "connections":["Greenland","Scandinavia","Great_Britain"]},
+			{"name":"Scandinavia", "location":[530,133], "connections":["Iceland","Great_Britain","Northern_Europe","Ukraine"]},
+			{"name":"Great_Britain", "location":[424,222], "connections":["Iceland","Scandinavia","Northern_Europe","Western_Europe"]},
+			{"name":"Northern_Europe", "location":[521,233], "connections":["Scandinavia","Great_Britain","Ukraine","Western_Europe","Southern_Europe"]},
+			{"name":"Ukraine", "location":[616,198], "connections":["Scandinavia","Northern_Europe","Southern_Europe","Ural","Afghanistan","Middle_East"]},
+			{"name":"Western_Europe", "location":[448,315], "connections":["Great_Britain","Northern_Europe","Southern_Europe","North_Africa"]},
+			{"name":"Southern_Europe", "location":[531,309], "connections":["Northern_Europe","Ukraine","Western_Europe","North_Africa","Egypt","Middle_East"]}
+			]
+		},
+		{"name":"Australia", "value":2, "territories":[
+			{"name":"Indonesia", "location":[883,525], "connections":["Siam","New Guinea","Western_Australia"]},
+			{"name":"New Guinea", "location":[974,496], "connections":["Indonesia","Western_Australia","Eastern_Australia"]},
+			{"name":"Western_Australia", "location":[927,625], "connections":["Indonesia","New Guinea","Eastern_Australia"]},
+			{"name":"Eastern_Australia", "location":[1003,609], "connections":["New Guinea","Western_Australia"]}
+			]
+		},
+		{"name":"Asia", "value":7, "territories":[
+			{"name":"Ural", "location":[735,168], "connections":["Ukraine","Siberia","China","Afghanistan"]},
+			{"name":"Siberia", "location":[791,126], "connections":["Ural","Yakutsk","Irkutsk","Mongolia","China"]},
+			{"name":"Yakutsk", "location":[873,86], "connections":["Siberia","Kamchatka","Irkutsk"]},
+			{"name":"Kamchatka", "location":[946,125], "connections":["Yakutsk","Irkutsk","Mongolia","Japan","Alaska"]},
+			{"name":"Irkutsk", "location":[861,172], "connections":["Siberia","Yakutsk","Kamchatka","Mongolia"]},
+			{"name":"Mongolia", "location":[875,244], "connections":["Siberia","Kamchatka","Irkutsk","Japan","China"]},
+			{"name":"Japan", "location":[985,248], "connections":["Kamchatka","Mongolia"]},
+			{"name":"China", "location":[841,311], "connections":["Ural","Siberia","Mongolia","Afghanistan","India","Siam"]},
+			{"name":"Afghanistan", "location":[717,262], "connections":["Ural","China","Middle_East","India","Ukraine"]},
+			{"name":"Middle_East", "location":[646,373], "connections":["Afghanistan","India","Ukraine","Southern_Europe","Egypt","East_Africa"]},
+			{"name":"India", "location":[775,378], "connections":["China","Afghanistan","Middle_East","Siam"]},
+			{"name":"Siam", "location":[863,407], "connections":["China","India","Indonesia"]}
+			]
+		}
+    ]
+}

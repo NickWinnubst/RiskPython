@@ -2,16 +2,16 @@
 	"army_sizes": [2,3,4,5,6,7],
     "regions": [
 		{"name":"North", "value":2, "territories":[
-			{"name":"Hodor", "connections":["Bran","Stark"]}
+			{"name":"Hodor", "location":[0,0], "connections":["Bran","Stark"]}
 			]
 		},
      	{"name":"South", "value":3, "territories":[
-			{"name":"Bran", "connections":["Lannister","Stark","Hodor"]},
-			{"name":"Stark", "connections":["Bran","Lannister","Hodor"]}
+			{"name":"Bran", "location":[100,0], "connections":["Lannister","Stark","Hodor"]},
+			{"name":"Stark", "location":[0,100], "connections":["Bran","Lannister","Hodor"]}
 			]
 		},
 		{"name":"East", "value":4, "territories":[
-			{"name":"Lannister", "connections":["Bran","Stark"]}
+			{"name":"Lannister", "location":[100,100], "connections":["Bran","Stark"]}
 			]
 		}
     ]
