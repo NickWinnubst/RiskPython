@@ -15,7 +15,7 @@ def attack(attackers, defenders):
     for x in range(0,min(attackers,defenders)):
         score = [a+b for [a,b] in zip(score,compare_dice(attacker_dice[x], defender_dice[x]))]
 
-    return score
+    return score, attacker_dice, defender_dice
 
 
 # compare dice to determine a score
