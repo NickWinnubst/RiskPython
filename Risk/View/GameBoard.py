@@ -125,6 +125,19 @@ class GameBoard(tk.Frame):
         self.attacking_armies = 0
         self.canvas.delete('popup')
 
+        self.draw_next_phase_button()
+
+    def next_phase(self):
+        if self.current_phase is "Reinforce" and self.reinforcements is 0:
+            self.move_to_phase("Combat")
+        elif self.current_phase is "Combat":
+            self.move_to_phase("Transfer")
+        elif self.current_phase is "Transfer":
+            self.current_player_nr += 1
+            self.current_player = self.players[self.current_player_nr % len(self.players)]
+            self.reinforcements = get_reinforcements(self.current_player, self.game_map)
+            self.move_to_phase("Reinforce")
+
     def move_to_phase(self,new_phase):
         self.current_phase = new_phase
         self.clear_pop_up()
@@ -282,6 +295,12 @@ class GameBoard(tk.Frame):
         self.canvas.create_window(x/2, y*2/3, window=confirmed, tags='popup')
 
         self.pop_up = True
+
+    def draw_next_phase_button(self):
+        x, y = self.canvas.winfo_width(),self.canvas.winfo_height()
+        next_phase_button = tk.Button(self.canvas, text="End\n" + self.current_phase + "\nPhase", command=self.next_phase)
+        next_phase_button.configure(font="helvetica 20 bold",relief="raised", foreground="white", background=self.current_player[1])
+        self.canvas.create_window(1075, y/2, window=next_phase_button, tags='popup')
 
 if __name__ == "__main__":
     root = tk.Tk()
