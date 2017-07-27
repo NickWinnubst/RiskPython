@@ -54,8 +54,8 @@ class GameBoard(tk.Frame):
             self.click_reinforce(clicked_on)
         elif self.current_phase is "Combat":
             self.click_combat(clicked_on)
-        elif self.current_phase is "Fortify":
-            self.click_fortify(clicked_on)
+        elif self.current_phase is "Transfer":
+            self.click_transfer(clicked_on)
 
     ########################################
 
@@ -99,20 +99,25 @@ class GameBoard(tk.Frame):
 
     ########################################
 
-    def click_fortify(self, clicked_on):
-        return
-        # TODO: implement proper fortify
-        # if clicked_on.ownes is not self.current_player:
-        #     return
-        # elif clicked_on.ownes is self.current_player and self.selected_territory.name is "None":
-        #     self.selected_territory = clicked_on
-        #     return
-        # elif self.selected_territory.name is not "None":
-        #     self.query_fortify(clicked_on)
-        #     return
+    def click_transfer(self, clicked_on):
+        if clicked_on.owner is not self.current_player:
+            return
+        elif clicked_on.owner is self.current_player and self.selected_territory.name is "None" and clicked_on.armies > 1:
+            self.update_selected(clicked_on)
+            return
+        elif self.selected_territory.name is not "None":
+            self.update_targeted(clicked_on)
+            self.draw_transfer_slider(self.selected_territory,self.targeted_territory)
+            return
+        print("No")
 
-    def query_fortify(self,clicked_on):
-        ()
+    def transfer(self,transfer_from, transfer_to, amount):
+        self.clear_pop_up()
+        transfer_from.armies -= amount
+        transfer_to.armies += amount
+        self.update_selected(transfer_from)
+        self.update_targeted(transfer_to)
+        self.next_phase()
 
     ######################################
 
@@ -294,13 +299,38 @@ class GameBoard(tk.Frame):
         confirmed.configure(relief='raised', font="helvetica 28", foreground="white", background=self.current_player[1], bd=10)
         self.canvas.create_window(x/2, y*2/3, window=confirmed, tags='popup')
 
+        self.pop_up = False
+
+    def draw_transfer_slider(self, move_from, move_to):
+        x, y = self.canvas.winfo_width(),self.canvas.winfo_height()
+
+        name_tag = tk.Label(self.canvas, text=self.current_player[0])
+        name_tag.configure(relief='raised', font="helvetica 42", foreground="white", background=self.current_player[1], bd=10)
+        self.canvas.create_window(x/2, y/6, window=name_tag, tags='popup')
+
+        block = tk.Label(self.canvas, text="Transfer\nfrom " + move_from.name.replace('_',' ') + "\n to " + move_to.name.replace('_',' '))
+        block.configure(relief='raised', font="helvetica 28", foreground="white", background=self.current_player[1], bd=10)
+        self.canvas.create_window(x/2, y/3, window=block, tags='popup')
+
+        scale = tk.Scale(self.canvas, from_=1, to=move_from.armies-1)
+        scale.set(move_from.armies-1)
+        scale.configure(relief='raised', font="helvetica 28", foreground="white", background=self.current_player[1], bd=10, orient=tk.HORIZONTAL, length = x/2)
+        self.canvas.create_window(x/2, y/2, window=scale, tags='popup')
+
+        def confirm():
+            self.transfer(move_from, move_to,scale.get())
+
+        confirmed = tk.Button(self.canvas, text = "Deploy Armies", command=confirm)
+        confirmed.configure(relief='raised', font="helvetica 28", foreground="white", background=self.current_player[1], bd=10)
+        self.canvas.create_window(x/2, y*2/3, window=confirmed, tags='popup')
+
         self.pop_up = True
 
     def draw_next_phase_button(self):
         x, y = self.canvas.winfo_width(),self.canvas.winfo_height()
         next_phase_button = tk.Button(self.canvas, text="End\n" + self.current_phase + "\nPhase", command=self.next_phase)
         next_phase_button.configure(font="helvetica 20 bold",relief="raised", foreground="white", background=self.current_player[1])
-        self.canvas.create_window(1075, y/2, window=next_phase_button, tags='popup')
+        self.canvas.create_window(x*1075/1200, y/2, window=next_phase_button, tags='popup')
 
 if __name__ == "__main__":
     root = tk.Tk()
