@@ -6,8 +6,9 @@ def set_up_game(players, new_map):
 
     initialized_map, starting_player, remaining_armies = randomly_initialize_territories(players, new_map)
     final_map = randomly_place_remaining_armies(players, initialized_map, starting_player, remaining_armies)
+    last_player = len(final_map.get_all_territories())*final_map.army_sizes[len(players)-1] % len(players)
 
-    return final_map
+    return final_map, last_player
 
 
 # randomly assign territories on the map to the players

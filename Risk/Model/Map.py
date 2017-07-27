@@ -28,6 +28,12 @@ class Map(object):
 
         return None
 
+    def has_a_territory(self,player):
+        for territory in self.get_all_territories():
+            if territory.owner == player:
+                return True
+        return False
+
     def get_closest_territory(self,location):
 
         # create an impossibly far territory
