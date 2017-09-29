@@ -22,7 +22,7 @@ class MainMenu(tk.Frame):
 
         self.board = None
 
-        self.players = [["Dylan","black"],["Nick","red"],["Nigel","blue"],["Peter","magenta"],["Hans","orange"],["Gerald","saddle brown"]]
+        self.players = [["Black Player","black"],["Red Player","red"],["Blue Player","blue"],["Pink Player","magenta"],["Orange Player","orange"],["Brown Player","saddle brown"]]
 
     def clear(self):
         for item in self.parent.winfo_children():
