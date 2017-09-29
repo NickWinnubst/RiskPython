@@ -1,2 +1,2 @@
 # RiskPython
-Repository for a Risk board game written in Python
+Repository for a Risk board game written in Python.
